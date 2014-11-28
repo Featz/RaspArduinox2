@@ -150,6 +150,25 @@ void loop()
            sprintf(f, "11000,%d",h);
            Serial.println(f);
            break;
+        case 9:
+           data = i%1000;
+           if (data == 11)
+           Serial.println(1000);
+           if (data == 12)
+           Serial.println(3000);
+           if (data == 21)
+           Serial.println(2000);
+           if (data == 22)
+           Serial.println(4000);
+           break;
+        case 10:
+           vel = i%1000;
+           Serial.println(7000 + vel);
+           break;
+        case 11:
+           vel = i%1000;
+           Serial.println(8000 + vel);
+           break;
     }
   }
 }
