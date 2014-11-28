@@ -107,4 +107,53 @@ class roboc:
 		except:
 			print "No device connected"
 
+	def oneWheel(self, side, direction):
+		try:
+			ok = True
+			if side == "left":
+				if direction == 'forward':	
+					data = 11
+				else:				
+					if direction == 'backward':
+						data = 12
+					else:
+						print 'direction must be forward or backward'
+						ok = False
+			else:			
+				if side == "right":
+					if direction == 'forward':
+						data = 21
+					else:
+						if direction == 'backward':
+							data = 22
+						else:
+							print 'direction must be forward or backward'
+							ok = False
+				else:
+					print 'side must be right or left'
+				ok = False
+			if	ok:
+				self.__socket = socket.socket()
+				self.__socket.connect((self.__ip, self.__port))
+				data = 9000 + data
+				self.__socket.send(str(data))
+		except:
+			print "No device connected"
 
+	def setOneSpeed(self, side, speed):
+		try:
+			if side == 'left':
+				self.__socket = socket.socket()
+				self.__socket.connect((self.__ip, self.__port))
+				data = 10000 + speed
+				self.__socket.send(str(data))
+			else:
+				if side == 'right':
+					self.__socket = socket.socket()
+					self.__socket.connect((self.__ip, self.__port))
+					data = 11000 + speed
+					self.__socket.send(str(data))
+				else:
+					print
+		except:
+			print 'side must be right or left'
